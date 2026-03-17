@@ -1,0 +1,35 @@
+START
+INPUT monthlyIncome
+PRINT "Enter fixed expenses"
+INPUT rentOrMortgage
+INPUT carPayment
+INPUT utilities
+INPUT internet
+INPUT cellPhone
+INPUT childcare
+INPUT insurance
+INPUT loanPayments
+SET totalFixedExpenses = rentOrMortgage + carPayment + utilities + internet + cellPhone + childcare + insurance + loanPayments
+SET totalVariableExpenses = 0
+PRINT "Enter variable expenses such as groceries, transportation, entertainment, or unexpected family needs"
+INPUT choice
+WHILE choice = "yes"
+  INPUT expenseName
+  INPUT expenseAmount
+  IF expenseAmount < 0 THEN
+    PRINT "Invalid amount"
+  ELSE
+    SET totalVariableExpenses = totalVariableExpenses + expenseAmount
+  ENDIF
+  PRINT "Do you want to enter another variable expense?"
+  INPUT choice
+ENDWHILE
+SET totalExpenses = totalFixedExpenses + totalVariableExpenses
+SET remainingBudget = monthlyIncome - totalExpenses
+IF remainingBudget < 0 THEN
+  PRINT "Over budget"
+ELSE IF remainingBudget = 0 THEN
+  PRINT "Budget balanced"
+ELSE
+  PRINT "Budget remaining"
+ENDIF
